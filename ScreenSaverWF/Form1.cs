@@ -47,6 +47,7 @@ namespace ScreenSaverWF
 
         private void timer_Tick(object sender, EventArgs e)
         {
+            timer.Stop();
             foreach (var flake in snowflakes)
             {
                 flake.Y += flake.Speed;
@@ -60,6 +61,8 @@ namespace ScreenSaverWF
 
             // Перерисовываем форму
             this.Invalidate(); // вызывает Paint
+
+            timer.Start();
         }
         protected override void OnPaint(PaintEventArgs e)
         {
