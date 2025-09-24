@@ -13,20 +13,20 @@ namespace ScreenSaverWF
     public partial class MainForm : Form
     {
 
-        private Random rand = new Random(); // объявлен один раз
+        private Random rand = new Random(); 
         private Image snowflakeImage;
         private List<Snowflake> snowflakes = new List<Snowflake>();
         public MainForm()
         {
             InitializeComponent();
 
-
+            this.KeyPreview = true; // перехватывает нажатие клавиш
             // Включаем двойную буферизацию — чтобы не было мерцания!
             this.DoubleBuffered = true;
 
             snowflakeImage = Properties.Resources.snowflake;
 
-            CreateSnowflakes(20); // создаём 20 снежинок
+            CreateSnowflakes(150); // создаём 150 снежинок
             timer.Interval = 8;
             timer.Start();
 
@@ -39,7 +39,7 @@ namespace ScreenSaverWF
                 {
                     X = rand.Next(-50, this.ClientSize.Width + 50),
                     Y = rand.Next(-this.ClientSize.Height, 0),
-                    Size = this.ClientSize.Width / 20,  // от 2 до 10 пикселей
+                    Size = this.ClientSize.Width / 20, 
                     Speed = 3,
                 });
             }
@@ -51,7 +51,7 @@ namespace ScreenSaverWF
             foreach (var flake in snowflakes)
             {
                 flake.Y += flake.Speed;
-                // Если улетела вниз — телепортируем наверх
+                // Если улетела вниз - телепортируем наверх
                 if (flake.Y > this.ClientSize.Height + flake.Size)
                 {
                     flake.Y = -flake.Size;
@@ -76,6 +76,11 @@ namespace ScreenSaverWF
                         new Rectangle((int)flake.X, (int)flake.Y, (int)flake.Size, (int)flake.Size));
                 }
             }
+        }
+
+        private void MainForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            this.Close();
         }
     }
 }
