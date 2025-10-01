@@ -73,9 +73,9 @@ namespace ScreenSaverWF.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap snowflake {
+        internal static System.Drawing.Bitmap flake {
             get {
-                object obj = ResourceManager.GetObject("snowflake", resourceCulture);
+                object obj = ResourceManager.GetObject("flake", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
